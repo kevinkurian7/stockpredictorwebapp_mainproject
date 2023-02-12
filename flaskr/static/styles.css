@@ -52,7 +52,7 @@
 
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/banner.jpg');
 
-  height: 50vh;
+  height: 70vh;
   width: 100%;
 
   
@@ -74,8 +74,91 @@
 }
 .banner-logo{
     display: block;
+    margin-bottom: 5px;
     font-weight: 900;
     font-size: 2em;
     font-family:var(--font-family)
 }
 
+/*CARD COMPONET STYLING*/
+.card_components{
+  display: flex;
+  margin:0 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: left;
+  height: 100vh;
+  padding: 20px 10px;
+  gap: 50px;
+}
+.container{
+ 
+  
+  position: relative;
+  top: 10vh;
+  background-color: rgba(255, 255, 255, 0.626);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.7);
+  padding: 10px 10px 10px 10px;
+  width: 20em;
+  height: 26em;
+  max-width: 100%;
+  overflow: hidden;
+}
+.image{
+  width: 100%;
+  height: 25vh;
+  border-radius: 10px;
+  object-fit: cover;
+}
+span{
+  position: relative;
+  top: 3px ;
+  left: 5px;
+  border: 1px solid #e5eaed;
+  background-color: #e5eaed;
+  border-radius: 50px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #788697;
+}
+.name{
+  position: relative;
+  top: 3px;
+  left: 5px;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 2em;
+}
+.text-desc{
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 14px;
+  line-height: 150%;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: justify;   
+  font-weight: 540; 
+}
+.button{
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 10px;
+  border: none;
+  padding: 5px;
+
+}
+.button:hover{
+  background-color: rgba(34, 69, 208, 0.708);
+  color: white;
+}
+.carddetails{
+  padding: 16px 8px 8px 8px;
+}
+
+
+/*CARD COMPONET STYLING END*/
