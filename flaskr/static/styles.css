@@ -162,3 +162,62 @@ span{
 
 
 /*CARD COMPONET STYLING END*/
+/*footer*/
+footer {
+  
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  height: 20vh;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1140px;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+footer li {
+  margin-right: 20px;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  footer ul {
+    margin-top: 20px;
+  }
+
+  footer li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+/*search page styles*/
+.search_logo{
+  width: 100px;
+  max-width: 100%;
+  
+}
