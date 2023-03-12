@@ -1,17 +1,25 @@
 :root{
     --font-family: 'Roboto', sans-serif;
 }
+
 *{
     box-sizing: border-box;
     padding: 0;
     margin:0;
 }
-
+html,body{
+  height: 100%;
+  
+}
 /*HEADER*/
 .header {
     overflow: hidden;
     background-color: #000000;
     padding: 20px 10px;
+    /*fixed
+    position:sticky;
+    top:0;
+    z-index:3;*/
   }
   
   .header a {
@@ -52,7 +60,7 @@
 
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/banner.jpg');
 
-  height: 70vh;
+  height: 100vh;
   width: 100%;
 
   
@@ -82,6 +90,9 @@
 
 /*CARD COMPONET STYLING*/
 .card_components{
+ 
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/banner1.jpg');
+  background-size: cover;
   display: flex;
   margin:0 auto;
   flex-direction: row;
@@ -215,9 +226,27 @@ footer a {
   }
 }
 
+/*SEARCH PAGE */
+
+/*search page styles*/
+.search_container{
+    width:100%;
+    min-height:100vh;
+    padding: 5%;
+   
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/banner2.jpg');
+  background-size:cover;
+}
 /*search page styles*/
 .search_logo{
-  width: 100px;
-  max-width: 100%;
+ 
+  margin: 0 auto;
+  text-align: center;
+ }
+ .logo_image{
+   position: relative;
+   bottom: 10em;
+   width:30em;
+   max-width: 100%;
   
-}
+ }

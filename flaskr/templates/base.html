@@ -25,8 +25,9 @@
         <a href="/" class="logo"><img src="{{ url_for('static', filename='logo.png') }}" ></a>
         <div class="header-right">
             <a href="/">Home</a>
-            <a href="/search">Search </a>
-            <a href="/about">About Us</a>
+            <a href="{{url_for('search')}}">Search </a>
+            <a href="{{url_for('about')}}">About Us</a>
+           
         </div>
         
         
