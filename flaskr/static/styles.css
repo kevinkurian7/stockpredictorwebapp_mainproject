@@ -236,6 +236,7 @@ footer a {
    
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/banner2.jpg');
   background-size:cover;
+  background-position: center;
 }
 /*search page styles*/
 .search_logo{
@@ -249,4 +250,46 @@ footer a {
    width:30em;
    max-width: 100%;
   
+ }
+ .search_bar{
+  
+  position: relative;
+  bottom: 250px;
+  
+  width: 100%;
+  max-width: 100%;
+  background:rgba(255,255,255,0.2);
+  display:flex;
+  align-items: center;
+  border-radius: 60px;
+  padding:10px 20px;
+  backdrop-filter:blur(4px) saturate(180%);
+
+ }
+ .search_bar input{
+  background: transparent;
+  flex: 1;
+  border:0;
+  outline: none;
+  font-size: 20px;
+  padding: 25px 20px;
+  color:#cac7ff;
+
+
+ }
+ ::placeholder{
+  color: #cac7ff;
+ }
+ .search_bar button img{
+  width: 25px;
+ }
+ .search_bar button{
+  border:0;
+  border-radius: 50%;
+  width:60px;
+  height:60px;
+  background: #58629b;
+  cursor: pointer;
+
+
  }

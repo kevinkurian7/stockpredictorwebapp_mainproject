@@ -7,7 +7,11 @@
 <div class="search_container">
     <div class="search_logo">
         <img src="{{ url_for('static', filename='default.png') }}" class="logo_image"></a>
-</div>
+    </div>
+    <form action="" class="search_bar">
+    <input type="text" placeholder="enter company tag" name="q">
+    <button type="submit"><img src="{{url_for('static',filename='search.png')}}"></button>
+    </form>
 
 
 </div>
