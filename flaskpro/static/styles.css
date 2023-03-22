@@ -9,7 +9,7 @@
 }
 html,body{
   height: 100%;
-  
+  font-family: var(--font-family);
 }
 /*HEADER*/
 .header {
@@ -87,6 +87,7 @@ html,body{
     font-size: 2em;
     font-family:var(--font-family)
 }
+
 
 /*CARD COMPONET STYLING*/
 .card_components{
@@ -254,15 +255,15 @@ footer a {
  .search_bar{
   
   position: relative;
-  bottom: 250px;
-  
-  width: 100%;
+  bottom: 310px;
+  margin: 0 auto;
+  width: 50%;
   max-width: 100%;
   background:rgba(255,255,255,0.2);
   display:flex;
   align-items: center;
   border-radius: 60px;
-  padding:10px 20px;
+  padding:0px 18px;
   backdrop-filter:blur(4px) saturate(180%);
 
  }

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" src="{{ url_for('static', filename='styles_search.css') }}">
+    <script>
+        $(function() {
+          $('#search-box').keyup(function() {
+            var query = $('#search-box').val();
+            if (query.length >= 2) {
+              $.getJSON('/search', {query: query}, function(data) {
+                var results = '';
+                $.each(data, function(index, result) {
+                  results += '<option value="' + result.symbol + '">' + result.symbol + ' - ' + result.name + '</option>';
+                });
+                $('#search-results').html(results);
+                $('#search-results').show();
+              });
+            } else {
+              $('#search-results').hide();
+            }
+          });
+    
+          $('#search-box').focusout(function() {
+            $('#search-results').hide();
+          });
+        });
+      </script>
+</head>
+
+<div class="search_container">
+    <div class="search_logo">
+        <img src="{{ url_for('static', filename='default.png') }}" class="logo_image"></a>
+    </div>
+
+    <form action="" class="search_bar" autocomplete="off">
+    <input id="search-box" type="text" placeholder="enter company tag" name="q">
+    <select id="search-results" size="5" style="display: none;"></select>    
+    <button type="submit"><img src="{{url_for('static',filename='search.png')}}"></button>
+    </form>
+    
+
+</div>
+
+
+
+{% endblock %}
