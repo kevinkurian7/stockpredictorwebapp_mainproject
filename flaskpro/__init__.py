@@ -19,7 +19,7 @@ def search_page():
 def search():
  
     query = request.args.get('query')
-    url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={query}&apikey=9HE15L51KC2VW3UQ'
+    url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={query}&outputsize=full&apikey=9HE15L51KC2VW3UQ'
     response = requests.get(url)
     data = response.json()
     results = []
@@ -37,7 +37,10 @@ def search():
 def results():
     query = request.form['query']
     # do something with query
-    return render_template('results.html', query=query)
+    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={query}&apikey=9HE15L51KC2VW3UQ'
+    response = requests.get(url)
+    data = response.json()
+    return render_template('results.html', data=data)
 
 if __name__ == '__main__':
     app.run()

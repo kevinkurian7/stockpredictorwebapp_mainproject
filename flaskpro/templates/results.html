@@ -6,9 +6,13 @@
     <body>
         <h1>Results</h1>
 
-        {% if query %}
-            You searched for: {{ query }}
-        {% else %}
-            No results found.
-        {% endif %}
+        {% if 'Error Message' in data %}
+		<p>{{ data['Error Message'] }}</p>
+	    {% else %}
+		    {% for date, info in data['Time Series (Daily)'].items() %}
+			<p>Date: {{ date }}</p>
+			<p>Adjusted Close: {{ info['5. adjusted close'] }}</p>
+			<hr>
+		{% endfor %}
+	    {% endif %}
     </body>
