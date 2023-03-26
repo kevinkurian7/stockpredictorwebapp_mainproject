@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Results</title>
+    </head>
+    <body>
+        <h1>Results</h1>
+
+        {% if query %}
+            You searched for: {{ query }}
+        {% else %}
+            No results found.
+        {% endif %}
+    </body>

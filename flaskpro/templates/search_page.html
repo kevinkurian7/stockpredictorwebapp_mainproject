@@ -2,6 +2,20 @@
 {% block content %}
 <head>
     <link rel="stylesheet" type="text/css" src="{{ url_for('static', filename='styles_search.css') }}">
+    
+</head>
+
+<div class="search_container">
+    <div class="search_logo">
+        <img src="{{ url_for('static', filename='default.png') }}" class="logo_image"></a>
+    </div>
+
+    <form id ="search-form" action="/search" class="search_bar" autocomplete="off">
+      <input id="search-box" type="text" placeholder="enter company tag" name="que">
+      <select id="search-results" size="5" style="display: none;"></select>    
+      <button type="submit" value="search"><img src="{{url_for('static',filename='search.png')}}"></button>
+    </form>
+    <link rel="stylesheet" type="text/css" src="{{ url_for('static', filename='styles_search.css') }}">
     <script>
         $(function() {
           $('#search-box').keyup(function() {
@@ -24,20 +38,20 @@
             $('#search-results').hide();
           });
         });
-      </script>
-</head>
-
-<div class="search_container">
-    <div class="search_logo">
-        <img src="{{ url_for('static', filename='default.png') }}" class="logo_image"></a>
-    </div>
-
-    <form action="" class="search_bar" autocomplete="off">
-    <input id="search-box" type="text" placeholder="enter company tag" name="q">
-    <select id="search-results" size="5" style="display: none;"></select>    
-    <button type="submit"><img src="{{url_for('static',filename='search.png')}}"></button>
-    </form>
     
+    
+  </script>
+    <script>
+      $(document).ready(function() {
+          $('#search-form').submit(function(event) {
+              event.preventDefault();
+              var query = $('#search-box').val();
+              $.post('/results', { query: query }, function(data) {
+                  $('body').html(data);
+              });
+          });
+      });
+      </script>
 
 </div>
 

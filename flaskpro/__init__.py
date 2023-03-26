@@ -33,8 +33,11 @@ def search():
         return jsonify(results)
     except:
         return jsonify(results)
-
-        
+@app.route('/results', methods=['POST'])
+def results():
+    query = request.form['query']
+    # do something with query
+    return render_template('results.html', query=query)
 
 if __name__ == '__main__':
     app.run()
