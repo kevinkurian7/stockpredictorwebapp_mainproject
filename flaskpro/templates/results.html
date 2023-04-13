@@ -1,18 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Results</title>
-    </head>
-    <body>
+{% extends "base.html" %}
+{% block content %}
         <h1>Results</h1>
 
-        {% if 'Error Message' in data %}
+      
+		{% if 'Error Message' in data %}
 		<p>{{ data['Error Message'] }}</p>
 	    {% else %}
-		    {% for date, info in data['Time Series (Daily)'].items() %}
-			<p>Date: {{ date }}</p>
-			<p>Adjusted Close: {{ info['5. adjusted close'] }}</p>
+			{% for pred, error in data.items() %}
+		    
+			<p>prediction: {{ pred }}</p>
+			<p>erro: {{ error }}</p>
 			<hr>
+			
 		{% endfor %}
 	    {% endif %}
-    </body>
+		<div>
+			<img src="{{ url_for('static', filename='LSTM.PNG') }}">
+		</div>
+		
+{% endblock %}

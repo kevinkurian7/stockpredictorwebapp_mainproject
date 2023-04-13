@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<!--<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">All Tickers</h6>
+            <a href="https://finance.yahoo.com/trending-tickers">Show All</a>
+        </div>
+         <div class="table-responsive">
+           <table>
+                {% for row in data %}
+                <tr>
+                  {% for item in row %}
+                  <td>{{ item }}</td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+              </table>
+              
+        </div>
+    </div>
+-->
+<div class="searcht">
+    <form id ="search-form" class="search_barticker" autocomplete="off" >
+        <input id="search-boxt" type="text" placeholder="enter company tag" name="que">
+          
+        <button type="submit" value="search"><img src="{{url_for('static',filename='search.png')}}"></button>
+      </form>
+      <table id="results" size="5" style="display: none;"></table> 
+    
+
+   
+    <script>
+    $(function() {
+        $('#search-boxt').keyup(function() {
+            var query = $('#search-boxt').val();
+            if (query.length >= 2) {
+                $.getJSON('/search', {query: query}, function(data) {
+                    var results = '<table>';
+                    $.each(data, function(index, result) {
+                        results += '<tr><td>' + result.symbol + '</td><td>' + result.name + '</td></tr>';
+                    });
+                    results += '</table>';
+                    $('#results').html(results);
+                    $('#results').show();
+                });
+            } else {
+                $('#results').hide();
+            }
+        });
+      
+        $('#search-boxt').focusout(function() {
+            $('#results').hide();
+        });
+    });</script>
+    
+</div>
+    
+
+{% endblock %}    
