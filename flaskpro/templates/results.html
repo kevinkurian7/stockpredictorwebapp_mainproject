@@ -2,20 +2,36 @@
 {% block content %}
         <h1>Results</h1>
 
-      
+     
 		{% if 'Error Message' in data %}
 		<p>{{ data['Error Message'] }}</p>
 	    {% else %}
-			{% for pred, error in data.items() %}
-		    
-			<p>prediction: {{ pred }}</p>
-			<p>erro: {{ error }}</p>
-			<hr>
-			
-		{% endfor %}
+		<h3>predicted closing price: {{data.lstm_pred}}</h3>
+		<h3>root mean squared error: {{data.error_lstm}}</h3>
 	    {% endif %}
+		
 		<div>
 			<img src="{{ url_for('static', filename='LSTM.PNG') }}">
 		</div>
+		<div class="newscontainer">
+			{% for article in articlesd %}
+			  <div class="article">
+				<div class="article-image">
+				  <img src="{{ article.urlToImage }}" alt="{{ article.title }}">
+				</div>
+				<div class="article-content">
+				  <div class="article-title">
+					<a href="{{ article.url }}">{{ article.title }}</a>
+				  </div>
+				  <div class="article-description">{{ article.description }}</div>
+				  <div class="article-source">{{ article.source.name }}</div>
+				</div>
+			  </div>
+			{% endfor %}
+		  </div>
+		
 		
 {% endblock %}
+
+
+

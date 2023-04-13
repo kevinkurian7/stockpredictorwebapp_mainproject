@@ -64,9 +64,10 @@ def results():
     def get_company_news(query):
         url = f"https://newsapi.org/v2/everything?q={query}&apiKey=0defce38b4484b929a94879eb7184d17"
         response = requests.get(url)
-        data = response.json()
-        articles = data["articles"]
-        for article in articles:
+        news = response.json()
+        global articlesd
+        articlesd = news["articles"][0:11]
+        for article in articlesd:
             print(article["title"])
             print(article["url"])
             print()
@@ -244,11 +245,8 @@ def results():
         
         print("ERROR",error_lstm)
         data={"lstm_pred":lstm_pred,"error_lstm":error_lstm}
-        return render_template('results.html', data=data)
-    '''print()
-    print("Forecasted Prices for Next 7 days:")
-    print(forecast_set)
-    today_stock=today_stock.round(2)'''
+        return render_template('results.html', data=data,articlesd=articlesd)
+    
    
 
 
