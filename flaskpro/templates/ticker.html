@@ -1,25 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<!--<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary text-center rounded p-4">
-        <div class="d-flex align-items-center justify-content-between mb-4">
-            <h6 class="mb-0">All Tickers</h6>
-            <a href="https://finance.yahoo.com/trending-tickers">Show All</a>
-        </div>
-         <div class="table-responsive">
-           <table>
-                {% for row in data %}
-                <tr>
-                  {% for item in row %}
-                  <td>{{ item }}</td>
-                  {% endfor %}
-                </tr>
-                {% endfor %}
-              </table>
-              
-        </div>
-    </div>
--->
+
 <div class="searcht">
     <form id ="search-form" class="search_barticker" autocomplete="off" >
         <input id="search-boxt" type="text" placeholder="enter company tag" name="que">
