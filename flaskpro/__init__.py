@@ -21,7 +21,7 @@ import re
 
 from textblob import TextBlob
 import constants as ct
-
+from sklearn.linear_model import LinearRegression
 import nltk
 nltk.download('punkt')
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -112,7 +112,7 @@ def results():
         training_set=df.iloc[:,4:5].values
    
         from sklearn.preprocessing import MinMaxScaler
-        sc=MinMaxScaler(feature_range=(0,1))#Scaled values btween 0,1
+        sc=MinMaxScaler(feature_range=(0,1))
         training_set_scaled=sc.fit_transform(training_set)
       
         X_train=[]
@@ -161,7 +161,7 @@ def results():
         regressor.compile(optimizer='adam',loss='mean_squared_error')
         
         #Training
-        regressor.fit(X_train,y_train,epochs=25,batch_size=32 )
+        regressor.fit(X_train,y_train,epochs=1,batch_size=32 )
         
         real_stock_price=dataset_test.iloc[:,4:5].values
         
@@ -212,6 +212,67 @@ def results():
         print("##############################################################################")
         return lstm_pred,error_lstm
 
+     #linear refression   
+    def LIN_REG_ALGO(df):
+       
+        forecast_out = int(7)
+        #Price after n days
+        df['Close after n days'] = df['Close'].shift(-forecast_out)
+       
+        df_new=df[['Close','Close after n days']]
+
+       
+        y =np.array(df_new.iloc[:-forecast_out,-1])
+        y=np.reshape(y, (-1,1))
+       
+        X=np.array(df_new.iloc[:-forecast_out,0:-1])
+     
+        X_to_be_forecasted=np.array(df_new.iloc[-forecast_out:,0:-1])
+        
+       
+        X_train=X[0:int(0.8*len(df)),:]
+        X_test=X[int(0.8*len(df)):,:]
+        y_train=y[0:int(0.8*len(df)),:]
+        y_test=y[int(0.8*len(df)):,:]
+        
+
+        from sklearn.preprocessing import StandardScaler
+        sc = StandardScaler()
+        X_train = sc.fit_transform(X_train)
+        X_test = sc.transform(X_test)
+        
+        X_to_be_forecasted=sc.transform(X_to_be_forecasted)
+        
+        #Training
+        clf = LinearRegression(n_jobs=-1)
+        clf.fit(X_train, y_train)
+        
+        #Testing
+        y_test_pred=clf.predict(X_test)
+        y_test_pred=y_test_pred*(1.04)
+        import matplotlib.pyplot as plt2
+        fig = plt2.figure(figsize=(7.2,4.8),dpi=65)
+        plt2.plot(y_test,label='Actual Price' )
+        plt2.plot(y_test_pred,label='Predicted Price')
+        
+        plt2.legend(loc=4)
+        plt2.savefig('flaskpro/static/LR.PNG')
+        plt2.close(fig)
+        
+        error_lr = math.sqrt(mean_squared_error(y_test, y_test_pred))
+        
+        
+        #Forecasting
+        forecast_set = clf.predict(X_to_be_forecasted)
+        forecast_set=forecast_set*(1.04)
+        mean=forecast_set.mean()
+        lr_pred=forecast_set[0,0]
+        print()
+        print("##############################################################################")
+        print("Tomorrow's ",quote," Closing Price Prediction by Linear Regression: ",lr_pred)
+        print("Linear Regression RMSE:",error_lr)
+        print("##############################################################################")
+        return df, lr_pred, forecast_set, mean, error_lr
     
 
     
@@ -240,13 +301,25 @@ def results():
 
         
         lstm_pred, error_lstm=LSTM_ALGO(df)
-
-    #arima_pred, error_arima=ARIMA_ALGO(df)
+        df, lr_pred, forecast_set,mean,error_lr=LIN_REG_ALGO(df)
+        print("Forecasted Prices for Next 7 days:")
+        print(forecast_set)
+        
         
         print("ERROR",error_lstm)
-        data={"lstm_pred":lstm_pred,"error_lstm":error_lstm}
-        return render_template('results.html', data=data,articlesd=articlesd)
-    
+        data={"lstm_pred":round(lstm_pred,2),"error_lstm":round(error_lstm,2)}
+        return render_template('results.html', open_s=today_stock['Open'].to_string(index=False),
+                               close_s=today_stock['Close'].to_string(index=False),
+                               adj_close=today_stock['Adj Close'].to_string(index=False),
+                               
+                               high_s=today_stock['High'].to_string(index=False),
+                               low_s=today_stock['Low'].to_string(index=False),
+                               vol=today_stock['Volume'].to_string(index=False),
+                               data=data,articlesd=articlesd,df=df, lr_pred=round(lr_pred,2),
+                                forecast_set=forecast_set,quote=quote,
+                                
+                                  error_lr=round(error_lr,2))
+
    
 
 

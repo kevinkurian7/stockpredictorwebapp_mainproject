@@ -456,19 +456,27 @@ header {
 
 /*result styles*/
 .result {
+  padding: 10px;
   color: #00bfff;
+  background: black;
+  display: inline;
+  border-radius: 10%;
 }
 #result-error{
   color: #ff4500;
 }
 .lstmres {
-  display: flex;
+  display: inline-block;
+  margin: 5px;
   justify-content: center;
   margin-top: 50px;
 }
 .result-img{
   border: 1px solid #00bfff;
   border-radius: 5px;
+}
+.result-val{
+  align-items: center;
 }
 
 
@@ -479,9 +487,16 @@ header {
 /*result im*/
 .newscon{
   width:100%;
-  height:100vh;
+  height:200vh;
   padding: 5%;
  
 background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZmluYW5jZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60');
 background-size:cover;
 background-position: center;}
+
+.pic{
+  margin-bottom: 95px;
+}
+.container{
+  height: auto;
+}
