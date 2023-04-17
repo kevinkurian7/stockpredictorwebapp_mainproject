@@ -161,7 +161,7 @@ def results():
         regressor.compile(optimizer='adam',loss='mean_squared_error')
         
         #Training
-        regressor.fit(X_train,y_train,epochs=1,batch_size=32 )
+        regressor.fit(X_train,y_train,epochs=25,batch_size=32 )
         
         real_stock_price=dataset_test.iloc[:,4:5].values
         

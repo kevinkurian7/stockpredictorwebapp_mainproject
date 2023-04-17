@@ -487,7 +487,7 @@ header {
 /*result im*/
 .newscon{
   width:100%;
-  height:200vh;
+  height:fit-content;
   padding: 5%;
  
 background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZmluYW5jZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60');
